@@ -325,7 +325,12 @@
    problems with complex programs). You need to recompile the target binary
    after changing this - otherwise, SEGVs may ensue. */
 
+#ifdef MAP_SIZE_POW2_CUSTOM
+#define MAP_SIZE_POW2       MAP_SIZE_POW2_CUSTOM
+#else
 #define MAP_SIZE_POW2       16
+#endif
+ 
 #define MAP_SIZE            (1 << MAP_SIZE_POW2)
 
 /* Maximum allocator request size (keep well under INT_MAX): */

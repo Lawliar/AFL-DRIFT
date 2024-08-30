@@ -91,4 +91,30 @@ typedef int64_t  s64;
 #define likely(_x)   __builtin_expect(!!(_x), 1)
 #define unlikely(_x)  __builtin_expect(!!(_x), 0)
 
+/* Reporting errors */
+#define FS_OPT_ERROR 0xf800008f
+#define FS_OPT_GET_ERROR(x) ((x & 0x00ffff00) >> 8)
+#define FS_OPT_SET_ERROR(x) ((x & 0x0000ffff) << 8)
+#define FS_ERROR_MAP_SIZE 1
+#define FS_ERROR_MAP_ADDR 2
+#define FS_ERROR_SHM_OPEN 4
+#define FS_ERROR_SHMAT 8
+#define FS_ERROR_MMAP 16
+#define FS_ERROR_OLD_CMPLOG 32
+#define FS_ERROR_OLD_CMPLOG_QEMU 64
+
+/* Reporting options */
+#define FS_OPT_ENABLED 0x80000001
+#define FS_OPT_MAPSIZE 0x40000000
+#define FS_OPT_SNAPSHOT 0x20000000
+#define FS_OPT_AUTODICT 0x10000000
+#define FS_OPT_SHDMEM_FUZZ 0x01000000
+#define FS_OPT_NEWCMPLOG 0x02000000
+#define FS_OPT_OLD_AFLPP_WORKAROUND 0x0f000000
+// FS_OPT_MAX_MAPSIZE is 8388608 = 0x800000 = 2^23 = 1 << 23
+#define FS_OPT_MAX_MAPSIZE ((0x00fffffeU >> 1) + 1)
+#define FS_OPT_GET_MAPSIZE(x) (((x & 0x00fffffe) >> 1) + 1)
+#define FS_OPT_SET_MAPSIZE(x) \
+  (x <= 1 || x > FS_OPT_MAX_MAPSIZE ? 0 : ((x - 1) << 1))
+
 #endif /* ! _HAVE_TYPES_H */
