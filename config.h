@@ -333,6 +333,23 @@
  
 #define MAP_SIZE            (1 << MAP_SIZE_POW2)
 
+
+#if MAP_SIZE == (1024 * 64)
+#define AFL_BITMAP_MASK  0xffff
+#elif MAP_SIZE == (1024 * 32)
+#define AFL_BITMAP_MASK  0x7fff
+#elif MAP_SIZE == (1024 * 16)
+#define AFL_BITMAP_MASK  0x3fff
+#elif MAP_SIZE == (1024 * 8)
+#define AFL_BITMAP_MASK  0x1fff
+#elif MAP_SIZE == (1024 * 4)
+#define AFL_BITMAP_MASK  0x0fff
+#elif MAP_SIZE == (1024 * 2)
+#define AFL_BITMAP_MASK  0x07ff
+#elif MAP_SIZE == (1024 * 1)
+#define AFL_BITMAP_MASK  0x03ff
+#endif
+
 /* Maximum allocator request size (keep well under INT_MAX): */
 
 #define MAX_ALLOC           0x40000000
