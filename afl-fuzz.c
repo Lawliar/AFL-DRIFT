@@ -3235,7 +3235,7 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
         simplify_trace((u32*)trace_bits);
 #endif /* ^WORD_SIZE_64 */
 
-        if (!has_new_bits(virgin_tmout)) return keeping;
+        //if (!has_new_bits(virgin_tmout)) return keeping;
 
       }
 
@@ -3299,7 +3299,7 @@ keep_as_crash:
         simplify_trace((u32*)trace_bits);
 #endif /* ^WORD_SIZE_64 */
 
-        if (!has_new_bits(virgin_crash)) return keeping;
+        //if (!has_new_bits(virgin_crash)) return keeping;
 
       }
 
